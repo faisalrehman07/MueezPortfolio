@@ -2,13 +2,13 @@
 
 @layer base {
   :root {
-    --bg-dark: #070d17;
+    --bg-dark: #080e1a;
     --bg-card: rgba(15, 23, 42, 0.75);
     --border-card: rgba(255, 255, 255, 0.08);
-    --gold: #f59e0b;
-    --gold-subtle: rgba(245, 158, 11, 0.12);
-    --cyan: #38bdf8;
-    --cyan-subtle: rgba(56, 189, 248, 0.12);
+    --cobalt: #2563eb;
+    --cobalt-subtle: rgba(37, 99, 235, 0.12);
+    --sky: #0ea5e9;
+    --sky-subtle: rgba(14, 165, 233, 0.12);
   }
 
   * {
@@ -22,18 +22,18 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: #070d17;
+    background-color: #080e1a;
     color: #f1f5f9;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
   }
 
-  /* Custom subtle scrollbar */
+  /* Custom institutional scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #070d17;
+    background: #080e1a;
   }
   ::-webkit-scrollbar-thumb {
     background: #1e293b;
@@ -44,7 +44,7 @@
   }
 }
 
-/* Background MBA Grid and Glow Patterns */
+/* Institutional Banking Grid & Ambient Lighting */
 .bg-executive-grid {
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -53,11 +53,11 @@
 }
 
 .bg-radial-gradient {
-  background: radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.07) 0%, rgba(245, 158, 11, 0.05) 35%, transparent 70%);
+  background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.08) 0%, rgba(14, 165, 233, 0.05) 40%, transparent 70%);
 }
 
 .glass-panel {
-  background: rgba(13, 23, 42, 0.7);
+  background: rgba(14, 22, 38, 0.75);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -67,58 +67,44 @@
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel-hover:hover {
-  background: rgba(19, 34, 60, 0.82);
-  border-color: rgba(245, 158, 11, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.15), 0 0 20px -5px rgba(56, 189, 248, 0.12);
-  transform: translateY(-3px);
+  background: rgba(20, 32, 54, 0.85);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2);
+  transform: translateY(-2px);
 }
 
-.gold-gradient-text {
-  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+/* Crisp Institutional Text Accents (No Yellow) */
+.brand-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.blue-gradient-text {
-  background: linear-gradient(135deg, #e0f2fe 0%, #38bdf8 50%, #0284c7 100%);
+.cobalt-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Smooth motion floating effect */
+/* Subtle corporate motion */
 @keyframes subtle-float {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
 .animate-subtle-float {
-  animation: subtle-float 6s ease-in-out infinite;
+  animation: subtle-float 7s ease-in-out infinite;
 }
 
-@keyframes pulse-subtle {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.02);
-  }
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 4s ease-in-out infinite;
-}
-
-/* Print Stylesheet for Printable Resume */
+/* Print Stylesheet for Resume */
 @media print {
   body {
     background: #ffffff !important;
-    color: #111827 !important;
+    color: #0f172a !important;
   }
   .no-print {
     display: none !important;

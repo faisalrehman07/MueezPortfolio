@@ -6,9 +6,9 @@ import {
   RotateCcw, 
   Play, 
   Pause, 
-  Sparkles, 
   CheckCircle2, 
-  LayoutGrid
+  LayoutGrid,
+  Check
 } from 'lucide-react';
 
 interface SkillsGlobeProps {
@@ -94,10 +94,10 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
     const wireframeMesh = new THREE.Mesh(wireframeGeo, wireframeMat);
     sphereGroup.add(wireframeMesh);
 
-    // Subtle MBA Gold Orbit rings
+    // Institutional Cobalt Orbit rings
     const ringGeo1 = new THREE.RingGeometry(sphereRadius + 4, sphereRadius + 5, 64);
     const ringMat1 = new THREE.MeshBasicMaterial({
-      color: 0xf59e0b,
+      color: 0x2563eb,
       side: THREE.DoubleSide,
       transparent: true,
       opacity: 0.35,
@@ -111,7 +111,7 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
       color: 0x38bdf8,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.3,
+      opacity: 0.25,
     });
     const ringMesh2 = new THREE.Mesh(ringGeo2, ringMat2);
     ringMesh2.rotation.y = Math.PI / 4;
@@ -135,9 +135,8 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
 
       // Add a small 3D glowing sphere mesh at each node
       const pointGeo = new THREE.SphereGeometry(2.5, 12, 12);
-      const isGold = activeSkills[i].category === 'mba' || activeSkills[i].category === 'cx';
       const pointMat = new THREE.MeshBasicMaterial({
-        color: isGold ? 0xf59e0b : 0x38bdf8,
+        color: 0x38bdf8,
       });
       const pointMesh = new THREE.Mesh(pointGeo, pointMat);
       pointMesh.position.copy(vector);
@@ -146,7 +145,7 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
 
     // Animation & 2D Projection Loop
     let animationFrameId: number;
-    let autoRotationSpeed = 0.0035;
+    const autoRotationSpeed = 0.0035;
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
@@ -164,7 +163,7 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
         tempVec.copy(vector);
         tempVec.applyMatrix4(sphereGroup.matrixWorld);
 
-        // Calculate z-depth for visibility (only show or emphasize front facing)
+        // Calculate z-depth for visibility
         const isFacingFront = tempVec.z > -40;
 
         tempVec.project(camera);
@@ -278,7 +277,7 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
     <div className="w-full space-y-6">
       
       {/* Category Filter Chips & Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/90 p-3 rounded-2xl border border-slate-800">
         
         {/* Category Pills */}
         <div className="flex flex-wrap gap-1.5">
@@ -287,7 +286,6 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
               key={cat.id}
               onClick={() => {
                 setSelectedCategory(cat.id);
-                // Also select the first matching skill
                 const first = cat.id === 'all' 
                   ? candidateData.skills[0] 
                   : candidateData.skills.find(s => s.category === cat.id);
@@ -295,7 +293,7 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
               }}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 selectedCategory === cat.id
-                  ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/20'
+                  ? 'bg-blue-600 text-white font-bold shadow-md shadow-blue-600/25'
                   : 'text-slate-300 hover:text-white bg-slate-800/70 hover:bg-slate-700/70 border border-slate-700/60'
               }`}
             >
@@ -311,8 +309,8 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
             className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-1.5 transition-colors"
             title="Toggle between 3D Globe and 2D Grid view"
           >
-            {viewMode === '3d' ? <LayoutGrid className="w-3.5 h-3.5 text-sky-400" /> : <Globe className="w-3.5 h-3.5 text-amber-400" />}
-            <span>{viewMode === '3d' ? 'Grid View' : '3D Globe'}</span>
+            {viewMode === '3d' ? <LayoutGrid className="w-3.5 h-3.5 text-blue-400" /> : <Globe className="w-3.5 h-3.5 text-blue-400" />}
+            <span>{viewMode === '3d' ? 'Grid View' : '3D Sphere'}</span>
           </button>
 
           {viewMode === '3d' && (
@@ -323,7 +321,7 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
                 title={isRotating ? 'Pause Rotation' : 'Start Rotation'}
                 aria-label={isRotating ? 'Pause 3D rotation' : 'Resume 3D rotation'}
               >
-                {isRotating ? <Pause className="w-4 h-4 text-amber-400" /> : <Play className="w-4 h-4 text-emerald-400" />}
+                {isRotating ? <Pause className="w-4 h-4 text-blue-400" /> : <Play className="w-4 h-4 text-emerald-400" />}
               </button>
 
               <button
@@ -344,23 +342,22 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
         <div className="relative w-full h-[480px] rounded-2xl glass-panel border border-slate-800 overflow-hidden select-none cursor-grab active:cursor-grabbing">
           
           {/* Subtle Ambient Instructions */}
-          <div className="absolute top-3 left-4 z-20 flex items-center gap-1.5 text-[11px] text-slate-400 pointer-events-none bg-slate-900/70 px-2.5 py-1 rounded-full border border-slate-800">
-            <Globe className="w-3.5 h-3.5 text-amber-400 animate-spin" style={{ animationDuration: '10s' }} />
+          <div className="absolute top-3 left-4 z-20 flex items-center gap-1.5 text-[11px] text-slate-400 pointer-events-none bg-slate-900/80 px-2.5 py-1 rounded-full border border-slate-800">
+            <Globe className="w-3.5 h-3.5 text-blue-400 animate-spin" style={{ animationDuration: '10s' }} />
             <span>Interactive 3D Sphere • Drag or touch to rotate</span>
           </div>
 
-          <div className="absolute top-3 right-4 z-20 text-[11px] font-mono text-sky-400 bg-sky-950/60 px-2.5 py-1 rounded-full border border-sky-500/30">
+          <div className="absolute top-3 right-4 z-20 text-[11px] font-mono text-blue-300 bg-blue-950/60 px-2.5 py-1 rounded-full border border-blue-500/30">
             {activeSkills.length} Verified Competencies
           </div>
 
           {/* Three.js Canvas Mount Point */}
           <div ref={mountRef} className="w-full h-full" />
 
-          {/* Projected 2D Interactive Labels (Zero pixelation, 100% accessible text) */}
+          {/* Projected 2D Interactive Labels */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {projectedNodes.map((node) => {
               const isSelected = selectedSkill?.name === node.name;
-              const isGold = node.category === 'mba' || node.category === 'cx';
 
               return (
                 <div
@@ -381,10 +378,8 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
                   }}
                   className={`cursor-pointer px-2.5 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap transition-all shadow-lg ${
                     isSelected
-                      ? 'bg-amber-400 text-slate-950 font-bold scale-110 ring-2 ring-amber-300 ring-offset-2 ring-offset-slate-950 shadow-amber-500/30'
-                      : isGold
-                      ? 'bg-slate-900/90 text-amber-200 border border-amber-500/40 hover:border-amber-400 hover:text-white hover:bg-slate-800'
-                      : 'bg-slate-900/90 text-sky-200 border border-sky-500/40 hover:border-sky-400 hover:text-white hover:bg-slate-800'
+                      ? 'bg-blue-600 text-white font-bold scale-110 ring-2 ring-blue-400 ring-offset-2 ring-offset-slate-950 shadow-blue-600/30'
+                      : 'bg-slate-900/90 text-slate-200 border border-slate-700 hover:border-blue-400 hover:text-white hover:bg-slate-800'
                   }`}
                 >
                   {node.name}
@@ -395,7 +390,7 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
 
         </div>
       ) : (
-        /* Accessible 2D Grid View (Fallback) */
+        /* Accessible 2D Grid View */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {activeSkills.map((skill, idx) => {
             const isSelected = selectedSkill?.name === skill.name;
@@ -405,15 +400,15 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
                 onClick={() => setSelectedSkill(skill)}
                 className={`p-4 rounded-xl cursor-pointer transition-all border text-left ${
                   isSelected
-                    ? 'bg-amber-950/20 border-amber-400 shadow-lg shadow-amber-500/10'
+                    ? 'bg-blue-950/30 border-blue-500 shadow-lg shadow-blue-500/10'
                     : 'bg-slate-900/80 border-slate-800 hover:border-slate-700'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] uppercase font-mono tracking-wider text-sky-400">
+                  <span className="text-[10px] uppercase font-mono tracking-wider text-blue-400">
                     {skill.categoryLabel}
                   </span>
-                  <CheckCircle2 className={`w-3.5 h-3.5 ${isSelected ? 'text-amber-400' : 'text-slate-600'}`} />
+                  <CheckCircle2 className={`w-3.5 h-3.5 ${isSelected ? 'text-blue-400' : 'text-slate-600'}`} />
                 </div>
                 <h4 className="text-sm font-bold text-white mb-1.5">{skill.name}</h4>
                 <p className="text-xs text-slate-400 leading-snug">{skill.description}</p>
@@ -426,18 +421,18 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
         </div>
       )}
 
-      {/* Selected Skill Spotlight Card */}
+      {/* Selected Skill Spotlight Card (No Yellow, No Sparkles) */}
       {selectedSkill && (
-        <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-900 border border-amber-400/30 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in duration-200">
+        <div className="p-5 rounded-2xl bg-slate-900/95 border border-blue-500/30 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in duration-200">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-amber-400/10 text-amber-300 border border-amber-400/30 uppercase">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-blue-600/15 text-blue-300 border border-blue-500/30 uppercase">
                 {selectedSkill.categoryLabel}
               </span>
               <span className="text-xs text-slate-400">• Verified Professional Application</span>
             </div>
             <h3 className="text-lg font-bold text-white flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-400" />
+              <Check className="w-4 h-4 text-blue-400" />
               {selectedSkill.name}
             </h3>
             <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">

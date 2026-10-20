@@ -30,13 +30,13 @@ Visa: ${candidateData.personal.relocation.visaStatus}
 Relocation: Open to relocation: Dubai / Abu Dhabi, UAE; Notice period: ${candidateData.personal.relocation.noticePeriod}
 LinkedIn: ${candidateData.personal.linkedin}
 
-SUMMARY
+PROFESSIONAL SUMMARY
 ${candidateData.personal.summary}
 
-SKILLS
+KEY COMPETENCIES
 ${candidateData.skills.map(s => `• ${s.name}: ${s.description}`).join('\n')}
 
-EXPERIENCE
+PROFESSIONAL EXPERIENCE
 ${candidateData.experience.map(exp => `
 ${exp.role} — ${exp.company}
 ${exp.period} | ${exp.location} ${exp.accountOrDept ? `(${exp.accountOrDept})` : ''}
@@ -48,7 +48,7 @@ ${exp.achievements.map(a => `• ${a}`).join('\n')}
 Tools: ${exp.tools.join(', ')}
 `).join('\n')}
 
-EDUCATION
+EDUCATION & QUALIFICATIONS
 ${candidateData.education.map(edu => `
 ${edu.degree}
 ${edu.institution} | ${edu.period} | ${edu.location}
@@ -79,9 +79,9 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
         {/* Modal Controls Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800 no-print">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-amber-400" />
+            <FileText className="w-5 h-5 text-blue-400" />
             <h3 className="text-base font-bold text-white">
-              Official Executive Resume View
+              Executive Curriculum Vitae
             </h3>
           </div>
 
@@ -97,7 +97,7 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
 
             <button
               onClick={handlePrint}
-              className="px-3.5 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
+              className="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
               title="Print or Save as PDF"
             >
               <Printer className="w-4 h-4" />
@@ -124,7 +124,7 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
                 {candidateData.personal.name}
               </h1>
               <p className="text-slate-700 font-semibold text-xs sm:text-sm mt-0.5">
-                Customer Support & Client-Facing Operations Specialist | MBA (Marketing & HR)
+                MBA Graduate (Marketing & HR) | Banking & Corporate HR Specialist
               </p>
             </div>
 
@@ -153,14 +153,14 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
               Key Competencies & Systems
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-slate-800">
-              <div>• Email & Chat Customer Support</div>
-              <div>• Customer Conflict Resolution</div>
-              <div>• CRM & Case Management</div>
-              <div>• Microsoft Excel & Reporting</div>
-              <div>• Sales & Upselling</div>
-              <div>• Cross-Functional Collaboration</div>
-              <div>• Multitasking & Adaptability</div>
-              <div>• Written Business Communication</div>
+              <div>• Client Relationship Management</div>
+              <div>• Audit Compliance & SLA Adherence</div>
+              <div>• Conflict De-escalation & Mediation</div>
+              <div>• Associate Mentoring & Onboarding</div>
+              <div>• Microsoft Excel & MIS Reporting</div>
+              <div>• Financial & Sales Target Discipline</div>
+              <div>• Human Resource Strategy (MBA)</div>
+              <div>• Written Executive Communication</div>
             </div>
           </div>
 
@@ -178,14 +178,14 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
                       <span>{exp.role}</span>
                       <span className="font-normal text-slate-700"> — {exp.company}</span>
                       {exp.accountOrDept && (
-                        <span className="font-semibold text-sky-800 text-xs ml-1">[{exp.accountOrDept}]</span>
+                        <span className="font-semibold text-blue-900 text-xs ml-1">[{exp.accountOrDept}]</span>
                       )}
                     </div>
                     <span className="font-mono text-xs text-slate-600">{exp.period} | {exp.location}</span>
                   </div>
 
                   {exp.isPromotion && exp.promotionNote && (
-                    <div className="text-[11px] font-semibold text-amber-800 italic">
+                    <div className="text-[11px] font-semibold text-blue-900 italic">
                       * {exp.promotionNote}
                     </div>
                   )}
@@ -207,7 +207,7 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
           {/* Education */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">
-              Education & Qualifications
+              Education & Academic Qualifications
             </h2>
             <div className="space-y-3">
               {candidateData.education.map((edu, idx) => (
@@ -245,7 +245,7 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
         {/* Modal Bottom Actions */}
         <div className="flex items-center justify-between pt-2 border-t border-slate-800 no-print">
           <span className="text-xs text-slate-400">
-            Click "Print / Save PDF" to produce a clean physical or PDF resume.
+            Click "Print / Save PDF" to generate a physical copy or export to PDF.
           </span>
           <button
             onClick={onClose}

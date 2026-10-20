@@ -15,7 +15,7 @@ export function App() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#070d17] text-slate-100 flex flex-col selection:bg-amber-400 selection:text-slate-950 font-sans">
+    <div className="min-h-screen bg-[#080e1a] text-slate-100 flex flex-col selection:bg-blue-600 selection:text-white font-sans">
       
       {/* Navigation Header */}
       <Navbar onOpenResumeModal={() => setIsResumeModalOpen(true)} />

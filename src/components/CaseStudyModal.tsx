@@ -17,9 +17,9 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, onClo
   if (!caseStudy) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
       <div 
-        className="relative w-full max-w-3xl rounded-3xl bg-[#0b1326] border border-amber-400/40 p-6 sm:p-8 shadow-2xl text-left space-y-6 my-8 max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-3xl rounded-3xl bg-[#0d1627] border border-blue-500/40 p-6 sm:p-8 shadow-2xl text-left space-y-6 my-8 max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         
@@ -35,10 +35,10 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, onClo
         {/* Modal Header */}
         <div className="space-y-2 pr-10">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-400/10 text-amber-300 border border-amber-400/30 uppercase">
+            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-600/20 text-blue-300 border border-blue-500/30 uppercase">
               {caseStudy.category}
             </span>
-            <span className="text-xs text-sky-400 font-semibold">• {caseStudy.organization}</span>
+            <span className="text-xs text-slate-400 font-semibold">• {caseStudy.organization}</span>
           </div>
 
           <h3 className="text-xl sm:text-2xl font-extrabold text-white leading-tight">
@@ -54,7 +54,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, onClo
         <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-slate-900/90 border border-slate-800">
           {caseStudy.metrics.map((m, idx) => (
             <div key={idx} className="text-center">
-              <span className="text-lg sm:text-2xl font-mono font-extrabold text-amber-400 block">
+              <span className="text-lg sm:text-2xl font-mono font-extrabold text-white block">
                 {m.value}
               </span>
               <span className="text-[11px] text-slate-400 font-medium">{m.label}</span>
@@ -65,7 +65,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, onClo
         {/* The Challenge */}
         <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
           <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-            <Briefcase className="w-4 h-4 text-rose-400" />
+            <Briefcase className="w-4 h-4 text-blue-400" />
             The Operational Challenge & Context
           </h4>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -76,13 +76,13 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, onClo
         {/* Method & Strategic Approach */}
         <div className="space-y-3">
           <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-sky-400" />
+            <BarChart3 className="w-4 h-4 text-blue-400" />
             Strategic Approach & Execution
           </h4>
           <div className="space-y-2.5">
             {caseStudy.approach.map((step, idx) => (
               <div key={idx} className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs sm:text-sm text-slate-300 flex items-start gap-3">
-                <span className="w-5 h-5 rounded-full bg-amber-400/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                <span className="w-5 h-5 rounded-full bg-blue-600/20 text-blue-400 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                   {idx + 1}
                 </span>
                 <span className="leading-relaxed">{step}</span>
@@ -120,7 +120,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, onClo
 
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition-colors"
+            className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors"
           >
             Close Case Study
           </button>
