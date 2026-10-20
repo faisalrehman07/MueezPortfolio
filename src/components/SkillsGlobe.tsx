@@ -36,7 +36,9 @@ export const SkillsGlobe: React.FC<SkillsGlobeProps> = ({ onSelectSkill }) => {
   const isDraggingRef = useRef(false);
   const previousMousePositionRef = useRef({ x: 0, y: 0 });
   const isRotatingRef = useRef(isRotating);
-  isRotatingRef.current = isRotating;
+  useEffect(() => {
+    isRotatingRef.current = isRotating;
+  }, [isRotating]);
 
   // Track 2D projected positions of 3D nodes for crisp interactive badges
   const [projectedNodes, setProjectedNodes] = useState<{

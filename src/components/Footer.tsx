@@ -7,12 +7,12 @@ import {
   ShieldCheck
 } from 'lucide-react';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-[#050a12] border-t border-slate-800/80 py-12 relative overflow-hidden">
@@ -85,7 +85,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
           <div className="flex items-center gap-1.5 font-mono text-[11px]">
-            <span>© {currentYear} {candidateData.personal.name}. All verified rights reserved.</span>
+            <span>© {CURRENT_YEAR} {candidateData.personal.name}. All verified rights reserved.</span>
           </div>
 
           <div className="flex items-center gap-2 text-[11px] font-mono text-slate-400">
