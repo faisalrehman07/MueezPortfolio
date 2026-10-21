@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { RoleMatcher } from './components/RoleMatcher';
 import { About } from './components/About';
 import { CompetenciesSection } from './components/CompetenciesSection';
 import { Experience } from './components/Experience';
 import { CaseStudies } from './components/CaseStudies';
 import { Education } from './components/Education';
-import { UAEReadiness } from './components/UAEReadiness';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
@@ -15,48 +16,50 @@ export function App() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#080e1a] text-slate-100 flex flex-col selection:bg-blue-600 selection:text-white font-sans">
-      
-      {/* Navigation Header */}
-      <Navbar onOpenResumeModal={() => setIsResumeModalOpen(true)} />
+    <ThemeProvider>
+      <div className="min-h-screen bg-white dark:bg-[#080e1a] text-slate-900 dark:text-slate-100 flex flex-col selection:bg-blue-600 selection:text-white font-sans transition-colors duration-250">
+        
+        {/* Navigation Header */}
+        <Navbar onOpenResumeModal={() => setIsResumeModalOpen(true)} />
 
-      {/* Main Content Area */}
-      <main className="flex-1">
-        {/* Hero Section with Interactive Operations Command Center */}
-        <Hero onOpenResumeModal={() => setIsResumeModalOpen(true)} />
+        {/* Main Content Area */}
+        <main className="flex-1">
+          {/* Hero Section with Executive Candidate Dossier */}
+          <Hero onOpenResumeModal={() => setIsResumeModalOpen(true)} />
 
-        {/* Executive Profile & 3 Strategic Pillars */}
-        <About />
+          {/* Recruiter Role Matcher & Competency Alignment */}
+          <RoleMatcher />
 
-        {/* Universal Skills Globe & Recruiter Competency Matrix */}
-        <CompetenciesSection />
+          {/* Executive Profile, HR Philosophy & 3 Strategic Pillars */}
+          <About />
 
-        {/* Professional Experience & Career Progression Timeline */}
-        <Experience />
+          {/* Strategic Competency Matrix & HR Functional Domains */}
+          <CompetenciesSection />
 
-        {/* Practical Operational Case Studies & Measured Impact */}
-        <CaseStudies />
+          {/* Professional Experience & Career Progression Timeline */}
+          <Experience />
 
-        {/* Academic Foundation: MBA in Marketing & HR + BBA */}
-        <Education />
+          {/* Practical Operational Case Studies & Measured HR Impact */}
+          <CaseStudies />
 
-        {/* UAE & Gulf Relocation Spotlight */}
-        <UAEReadiness />
+          {/* Academic Foundation: MBA in Human Resources & Marketing + BBA */}
+          <Education />
 
-        {/* Recruiter Contact & Inquiry Composer */}
-        <Contact onOpenResumeModal={() => setIsResumeModalOpen(true)} />
-      </main>
+          {/* Recruiter Contact & Inquiry Composer */}
+          <Contact onOpenResumeModal={() => setIsResumeModalOpen(true)} />
+        </main>
 
-      {/* Footer */}
-      <Footer />
+        {/* Footer */}
+        <Footer />
 
-      {/* Printable Executive Resume Modal */}
-      <ResumeModal
-        isOpen={isResumeModalOpen}
-        onClose={() => setIsResumeModalOpen(false)}
-      />
+        {/* Printable Executive Resume Modal */}
+        <ResumeModal
+          isOpen={isResumeModalOpen}
+          onClose={() => setIsResumeModalOpen(false)}
+        />
 
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 

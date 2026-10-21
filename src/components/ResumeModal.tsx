@@ -24,16 +24,16 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
   const handleCopyText = () => {
     const resumeText = `MUEEZ BAIG
+MBA Graduate (Human Resource Management & Marketing) | Strategic People Operations & Talent Specialist
 Email: ${candidateData.personal.email} | Phone: ${candidateData.personal.phone}
 Location: ${candidateData.personal.location}
-Visa: ${candidateData.personal.relocation.visaStatus}
-Relocation: Open to relocation: Dubai / Abu Dhabi, UAE; Notice period: ${candidateData.personal.relocation.noticePeriod}
+Relocation: Open to Global Relocation Worldwide & Remote Roles; Notice: ${candidateData.personal.relocation.noticePeriod}; Visa: ${candidateData.personal.relocation.visaStatus}
 LinkedIn: ${candidateData.personal.linkedin}
 
 PROFESSIONAL SUMMARY
 ${candidateData.personal.summary}
 
-KEY COMPETENCIES
+KEY COMPETENCIES & HR FRAMEWORKS
 ${candidateData.skills.map(s => `• ${s.name}: ${s.description}`).join('\n')}
 
 PROFESSIONAL EXPERIENCE
@@ -41,14 +41,15 @@ ${candidateData.experience.map(exp => `
 ${exp.role} — ${exp.company}
 ${exp.period} | ${exp.location} ${exp.accountOrDept ? `(${exp.accountOrDept})` : ''}
 ${exp.isPromotion && exp.promotionNote ? `Promotion: ${exp.promotionNote}` : ''}
+${exp.hrRelevance ? `HR Focus: ${exp.hrRelevance}` : ''}
+Key Deliverables:
+${exp.achievements.map(a => `• ${a}`).join('\n')}
 Responsibilities:
 ${exp.responsibilities.map(r => `• ${r}`).join('\n')}
-Key Achievements:
-${exp.achievements.map(a => `• ${a}`).join('\n')}
 Tools: ${exp.tools.join(', ')}
 `).join('\n')}
 
-EDUCATION & QUALIFICATIONS
+EDUCATION & ACADEMIC QUALIFICATIONS
 ${candidateData.education.map(edu => `
 ${edu.degree}
 ${edu.institution} | ${edu.period} | ${edu.location}
@@ -68,36 +69,36 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
       
       {/* Container */}
       <div 
-        className="relative w-full max-w-4xl rounded-3xl bg-[#0f172a] border border-slate-700 p-6 sm:p-8 shadow-2xl text-left space-y-6 my-6 max-h-[92vh] overflow-y-auto"
+        className="relative w-full max-w-4xl rounded-3xl bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-700 p-6 sm:p-8 shadow-2xl text-left space-y-6 my-6 max-h-[92vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Modal Controls Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800 no-print">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800 no-print">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-blue-400" />
-            <h3 className="text-base font-bold text-white">
-              Executive Curriculum Vitae
+            <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <h3 className="text-base font-bold text-slate-900 dark:text-white">
+              Executive Curriculum Vitae (MBA HR & Operations)
             </h3>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopyText}
-              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+              className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs"
               title="Copy formatted resume text"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-              <span>{copied ? 'Copied Text!' : 'Copy Text'}</span>
+              {copied ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              <span>{copied ? 'Copied Full CV!' : 'Copy Text CV'}</span>
             </button>
 
             <button
               onClick={handlePrint}
-              className="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
+              className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-xs"
               title="Print or Save as PDF"
             >
               <Printer className="w-4 h-4" />
@@ -106,7 +107,7 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700 transition-colors ml-1"
+              className="p-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white border border-slate-200 dark:border-slate-700 transition-colors ml-1"
               aria-label="Close Resume Modal"
             >
               <X className="w-5 h-5" />
@@ -115,16 +116,19 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
         </div>
 
         {/* Printable Paper Surface */}
-        <div className="bg-white text-slate-900 p-8 sm:p-10 rounded-2xl shadow-xl font-sans text-xs sm:text-sm leading-relaxed print-page space-y-6 border border-slate-200">
+        <div className="bg-white text-slate-900 p-8 sm:p-10 rounded-2xl shadow-lg font-sans text-xs sm:text-sm leading-relaxed print-page space-y-6 border border-slate-200">
           
           {/* Resume Header */}
           <div className="border-b-2 border-slate-900 pb-4 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 uppercase font-serif">
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 uppercase font-sans">
                 {candidateData.personal.name}
               </h1>
-              <p className="text-slate-700 font-semibold text-xs sm:text-sm mt-0.5">
-                MBA Graduate (Marketing & HR) | Banking & Corporate HR Specialist
+              <p className="text-blue-800 font-bold text-xs sm:text-sm mt-0.5">
+                MBA Graduate (Human Resource Management & Marketing) | Strategic People Operations
+              </p>
+              <p className="text-slate-600 text-xs mt-0.5">
+                Talent Acquisition & Onboarding • HR Analytics & MIS • Employee Relations • Compliance Audits
               </p>
             </div>
 
@@ -133,14 +137,14 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
               <div>Phone: <strong>{candidateData.personal.phone}</strong></div>
               <div>Location: <strong>{candidateData.personal.location}</strong></div>
               <div>LinkedIn: <strong>{candidateData.personal.linkedin}</strong></div>
-              <div className="text-emerald-700 font-bold">Open to relocation: Dubai / Abu Dhabi, UAE (30 Days Notice)</div>
+              <div className="text-emerald-700 font-bold">Global Mobility: Open to Relocation Worldwide & Remote (30 Days Notice)</div>
             </div>
           </div>
 
           {/* Summary */}
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">
-              Professional Summary
+            <h2 className="text-xs font-black uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">
+              Professional Executive Summary
             </h2>
             <p className="text-slate-800 leading-relaxed text-xs">
               {candidateData.personal.summary}
@@ -149,24 +153,22 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
 
           {/* Skills */}
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">
-              Key Competencies & Systems
+            <h2 className="text-xs font-black uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">
+              Key HR Competencies & Systems
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-slate-800">
-              <div>• Client Relationship Management</div>
-              <div>• Audit Compliance & SLA Adherence</div>
-              <div>• Conflict De-escalation & Mediation</div>
-              <div>• Associate Mentoring & Onboarding</div>
-              <div>• Microsoft Excel & MIS Reporting</div>
-              <div>• Financial & Sales Target Discipline</div>
-              <div>• Human Resource Strategy (MBA)</div>
-              <div>• Written Executive Communication</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-slate-800">
+              <div>• <strong>Talent Onboarding & Mentoring:</strong> 15+ associates trained</div>
+              <div>• <strong>Employee Relations:</strong> Grievance mediation & retention</div>
+              <div>• <strong>Audit Quality Assurance:</strong> 10/10 scorecard, 100% SLA</div>
+              <div>• <strong>Advanced MS Excel & MIS:</strong> Headcount & attrition modeling</div>
+              <div>• <strong>Strategic HR (SHRM):</strong> Appraisal models & KPIs</div>
+              <div>• <strong>Client Relations:</strong> $60,000 peak consultative revenue</div>
             </div>
           </div>
 
           {/* Experience */}
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-3 font-mono">
+            <h2 className="text-xs font-black uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-3 font-mono">
               Professional Experience
             </h2>
             
@@ -186,12 +188,21 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
 
                   {exp.isPromotion && exp.promotionNote && (
                     <div className="text-[11px] font-semibold text-blue-900 italic">
-                      * {exp.promotionNote}
+                      * Promotion: {exp.promotionNote}
+                    </div>
+                  )}
+
+                  {exp.hrRelevance && (
+                    <div className="text-[11px] text-slate-700 bg-slate-50 p-1.5 rounded border border-slate-200">
+                      <strong>HR Focus:</strong> {exp.hrRelevance}
                     </div>
                   )}
 
                   <ul className="list-disc pl-5 space-y-0.5 text-slate-800 text-xs mt-1">
-                    {exp.responsibilities.map((r, idx) => (
+                    {exp.achievements.map((ach, idx) => (
+                      <li key={idx}><strong className="text-slate-950">{ach}</strong></li>
+                    ))}
+                    {exp.responsibilities.slice(0, 2).map((r, idx) => (
                       <li key={idx}>{r}</li>
                     ))}
                   </ul>
@@ -206,7 +217,7 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
 
           {/* Education */}
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">
+            <h2 className="text-xs font-black uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">
               Education & Academic Qualifications
             </h2>
             <div className="space-y-3">
@@ -228,7 +239,7 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
 
           {/* Languages */}
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-1 font-mono">
+            <h2 className="text-xs font-black uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-1 font-mono">
               Languages
             </h2>
             <div className="flex flex-wrap gap-4 text-xs text-slate-800">
@@ -243,13 +254,13 @@ ${candidateData.personal.languages.map(l => `• ${l.name}: ${l.level}`).join('\
         </div>
 
         {/* Modal Bottom Actions */}
-        <div className="flex items-center justify-between pt-2 border-t border-slate-800 no-print">
-          <span className="text-xs text-slate-400">
-            Click "Print / Save PDF" to generate a physical copy or export to PDF.
+        <div className="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-slate-800 no-print">
+          <span className="text-xs text-slate-500 dark:text-slate-400">
+            Click "Print / Save PDF" to generate a physical copy or export to PDF format.
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors"
+            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition-colors shadow-2xs"
           >
             Close View
           </button>

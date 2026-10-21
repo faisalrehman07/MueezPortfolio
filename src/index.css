@@ -1,18 +1,45 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    --bg-dark: #080e1a;
-    --bg-card: rgba(15, 23, 42, 0.75);
-    --border-card: rgba(255, 255, 255, 0.08);
+    --bg-body: #f8fafc;
+    --text-body: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(226, 232, 240, 0.9);
+    --glass-hover: rgba(255, 255, 255, 0.98);
+    --inner-card: rgba(248, 250, 252, 0.8);
     --cobalt: #2563eb;
-    --cobalt-subtle: rgba(37, 99, 235, 0.12);
-    --sky: #0ea5e9;
-    --sky-subtle: rgba(14, 165, 233, 0.12);
+    --cobalt-subtle: rgba(37, 99, 235, 0.08);
+    --sky: #0284c7;
+    --grid-line: rgba(148, 163, 184, 0.14);
+    --radial-glow: rgba(37, 99, 235, 0.06);
+    --scrollbar-track: #f1f5f9;
+    --scrollbar-thumb: #cbd5e1;
+    --scrollbar-thumb-hover: #94a3b8;
+  }
+
+  .dark {
+    --bg-body: #080e1a;
+    --text-body: #f1f5f9;
+    --glass-bg: rgba(14, 22, 38, 0.78);
+    --glass-border: rgba(255, 255, 255, 0.09);
+    --glass-hover: rgba(20, 32, 54, 0.9);
+    --inner-card: rgba(8, 14, 26, 0.7);
+    --cobalt: #3b82f6;
+    --cobalt-subtle: rgba(37, 99, 235, 0.15);
+    --sky: #38bdf8;
+    --grid-line: rgba(255, 255, 255, 0.035);
+    --radial-glow: rgba(37, 99, 235, 0.09);
+    --scrollbar-track: #080e1a;
+    --scrollbar-thumb: #1e293b;
+    --scrollbar-thumb-hover: #334155;
   }
 
   * {
     box-sizing: border-box;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
   }
 
   html {
@@ -22,8 +49,8 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: #080e1a;
-    color: #f1f5f9;
+    background-color: var(--bg-body);
+    color: var(--text-body);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
   }
@@ -33,54 +60,63 @@
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #080e1a;
+    background: var(--scrollbar-track);
   }
   ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: var(--scrollbar-thumb);
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: var(--scrollbar-thumb-hover);
   }
 }
 
-/* Institutional Banking Grid & Ambient Lighting */
+/* Institutional Corporate Ambient Lighting */
 .bg-executive-grid {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background: transparent;
 }
 
 .bg-radial-gradient {
-  background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.08) 0%, rgba(14, 165, 233, 0.05) 40%, transparent 70%);
+  background: radial-gradient(circle at 50% 15%, var(--radial-glow) 0%, rgba(37, 99, 235, 0.02) 45%, transparent 70%);
 }
 
 .glass-panel {
-  background: rgba(14, 22, 38, 0.75);
+  background: var(--glass-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
 }
 
 .glass-panel-hover {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel-hover:hover {
-  background: rgba(20, 32, 54, 0.85);
+  background: var(--glass-hover);
   border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 12px 32px -10px rgba(37, 99, 235, 0.18);
   transform: translateY(-2px);
 }
 
-/* Crisp Institutional Text Accents (No Yellow) */
+/* Crisp Institutional Text Accents */
 .brand-gradient-text {
+  background: linear-gradient(135deg, #0f172a 0%, #334155 50%, #475569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .brand-gradient-text {
   background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .cobalt-gradient-text {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .cobalt-gradient-text {
   background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
